@@ -5,8 +5,7 @@
   gap: 8px;
 
   &:hover {
-    background-color: var(--main-blue-10);
-    color: var(--main-blue);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
   .sidebarItemIcon {
