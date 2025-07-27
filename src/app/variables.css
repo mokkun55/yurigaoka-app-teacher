@@ -1,25 +1,27 @@
 :root {
   /* App Colors */
-  --main-blue: #3b82f6;
-  --red: #ef4444;
-  --orange: #f97316;
-  --yellow: #ffac20;
-  --green: #10b981;
-  --gray: #4b5563;
+  --main-blue: rgba(59, 130, 246, 1);
+  --main-blue-10: rgba(59, 130, 246, 0.1);
+  --main-blue-10: rgba(235, 248, 255, 1);
+  --red: rgba(239, 68, 68, 1);
+  --orange: rgba(249, 115, 22, 1);
+  --yellow: rgba(255, 172, 32, 1);
+  --green: rgba(16, 185, 129, 1);
+  --gray: rgba(75, 85, 99, 1);
 
-  --main-text: #0f1419;
-  --sub-text: #4b5563;
-  --border-gray: #d1d5db;
-  --background-light: #f8f9fa;
-  --card-background: #ffffff;
-  --muted-background: #f1f3f5;
+  --main-text: rgba(15, 20, 25, 1);
+  --sub-text: rgba(75, 85, 99, 1);
+  --border-gray: rgba(209, 213, 219, 1);
+  --background-light: rgba(248, 249, 250, 1);
+  --card-background: rgba(255, 255, 255, 1);
+  --muted-background: rgba(241, 243, 245, 1);
 
-  --error-text: #b91c1c;
-  --error-background: #fee2e2;
-  --error-border: #fecaca;
-  --warn-text: #b45309;
-  --warn-background: #fef3c7;
-  --warn-border: #fde68a;
+  --error-text: rgba(185, 28, 28, 1);
+  --error-background: rgba(254, 226, 226, 1);
+  --error-border: rgba(254, 202, 202, 1);
+  --warn-text: rgba(180, 83, 9, 1);
+  --warn-background: rgba(254, 243, 199, 1);
+  --warn-border: rgba(253, 230, 138, 1);
 
   /* バッチ */
   --badge-pending-text: rgba(180, 84, 10, 1);

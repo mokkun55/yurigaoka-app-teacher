@@ -1,0 +1,25 @@
+.sidebarItem {
+  display: flex;
+  padding: 12px 24px;
+  color: var(--sub-text);
+  gap: 8px;
+
+  &:hover {
+    background-color: var(--main-blue-10);
+    color: var(--main-blue);
+  }
+
+  .sidebarItemIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .sidebarItemLabel {
+    font-size: 16px;
+  }
+}
+
+.sidebarItemActive {
+  background-color: var(--main-blue-10);
+  color: var(--main-blue);
+}
