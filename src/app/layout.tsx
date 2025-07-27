@@ -48,7 +48,7 @@ export default function RootLayout({
             <div className={styles.mainContent}>
               {/* ヘッダー */}
               <div className={styles.header}>
-                <h2>現在アクティブなタブ</h2>
+                <h2 className={styles.headerTitle}>現在アクティブなタブ</h2>
               </div>
               <div className={styles.content}>{children}</div>
             </div>
