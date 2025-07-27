@@ -1,5 +1,8 @@
+'use client'
+
 import styles from './styles.module.css'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { House, LampCeiling, FileText, Users, Settings, Newspaper, Key, UserRoundCog } from 'lucide-react'
 
 type Item = {
@@ -53,15 +56,18 @@ const items: Item[] = [
 
 type Props = {
   label: Item['label']
-  isActive: boolean
 }
 
-export const SidebarItem = ({ label, isActive }: Props) => {
+export const SidebarItem = ({ label }: Props) => {
+  const pathname = usePathname()
   const item = items.find((item) => item.label === label)
 
   if (!item) {
     return null
   }
+
+  // URLベースでアクティブなタブを判定
+  const isActive = pathname === item.href
 
   const isActiveClass = isActive ? styles.sidebarItemActive : ''
 

@@ -32,20 +32,6 @@
     flex-direction: column;
     flex: 1;
 
-    .header {
-      display: flex;
-      height: 80px;
-      padding: 0 32px;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border-gray);
-
-      .headerTitle {
-        font-size: 21px;
-        font-weight: 700;
-      }
-    }
-
     .content {
       display: flex;
       flex-direction: column;
