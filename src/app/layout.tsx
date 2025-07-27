@@ -32,16 +32,14 @@ export default function RootLayout({
               </div>
 
               <div className={styles.sidebarContent}>
-                <div className={styles.sidebarItem}>
-                  <SidebarItem label="ホーム" />
-                  <SidebarItem label="帰省者一覧" />
-                  <SidebarItem label="すべての申請" />
-                  <SidebarItem label="寮生一覧" />
-                  <SidebarItem label="お知らせ管理" />
-                  <SidebarItem label="招待コードの管理" />
-                  <SidebarItem label="指導寮生の管理" />
-                  <SidebarItem label="設定" />
-                </div>
+                <SidebarItem label="ホーム" />
+                <SidebarItem label="帰省者一覧" />
+                <SidebarItem label="すべての申請" />
+                <SidebarItem label="寮生一覧" />
+                <SidebarItem label="お知らせ管理" />
+                <SidebarItem label="招待コードの管理" />
+                <SidebarItem label="指導寮生の管理" />
+                <SidebarItem label="設定" />
               </div>
             </div>
 
