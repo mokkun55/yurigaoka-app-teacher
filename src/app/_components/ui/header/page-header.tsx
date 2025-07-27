@@ -2,6 +2,8 @@
 
 import { usePathname } from 'next/navigation'
 import styles from './page-header.module.css'
+import { Button } from '@mantine/core'
+import { Plus } from 'lucide-react'
 
 const pageTitles: Record<string, string> = {
   '/': 'ホーム',
@@ -35,6 +37,13 @@ export const PageHeader = () => {
   return (
     <div className={styles.pageHeader}>
       <h2 className={styles.pageHeaderTitle}>{currentTitle}</h2>
+      {pathname === '/notifications' && (
+        // TODO ボタンコンポーネントはラップして使う
+        <Button className={styles.pageHeaderButton}>
+          <Plus />
+          お知らせを新規作成
+        </Button>
+      )}
     </div>
   )
 }
