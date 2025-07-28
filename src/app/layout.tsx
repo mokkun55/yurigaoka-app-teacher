@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
-import dayjs from 'dayjs'
+import dayjs from '@/libs/dayjs'
 import '@mantine/core/styles.css'
 import { MantineProvider } from '@mantine/core'
 import styles from './layout.module.css'
