@@ -5,7 +5,7 @@ import styles from './page-header.module.css'
 import { PageHeaderActions } from './page-header-actions'
 
 const pageTitles: Record<string, string> = {
-  '/': 'ホーム',
+  '/home': 'ホーム',
   '/students/on-leave': '帰省者一覧',
   '/reports': 'すべての申請',
   '/students': '寮生一覧',

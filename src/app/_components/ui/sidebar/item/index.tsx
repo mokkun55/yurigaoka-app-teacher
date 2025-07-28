@@ -13,7 +13,7 @@ type Item = {
 
 const items: Item[] = [
   {
-    href: '/',
+    href: '/home',
     label: 'ホーム',
     icon: <House />,
   },
