@@ -1,4 +1,8 @@
+import Status from './_components/status'
 import styles from './styles.module.css'
+
+const studentsCount = 100
+const onLeaveCount = 10
 
 export default function Home() {
   return (
@@ -8,7 +12,9 @@ export default function Home() {
         <div className={styles.title}>寮の状態 (本日)</div>
         <div className={styles.statusContainer}>
           {/* 在寮人数 */}
+          <Status studentCount={studentsCount} onLeaveCount={onLeaveCount} type="在寮人数" />
           {/* 帰省者数 */}
+          <Status studentCount={studentsCount} onLeaveCount={onLeaveCount} type="帰省者数" />
         </div>
       </div>
 
