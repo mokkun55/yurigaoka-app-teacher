@@ -4,6 +4,9 @@ import Accordion from '@/app/_components/ui/accordion'
 import { Accordion as MantineAccordion } from '@mantine/core'
 import styles from './styles.module.css'
 import dayjs from '@/libs/dayjs'
+import BaseButton from '@/app/_components/ui/base-button'
+import BaseTextarea from '@/app/_components/ui/base-textarea'
+import { useState } from 'react'
 
 type Props = {
   items: {
@@ -27,6 +30,7 @@ type Props = {
 }
 
 export default function Report({ items }: Props) {
+  const [comment, setComment] = useState('')
   const listItems = items.map((item) => {
     return (
       <MantineAccordion.Item value={item.id} key={item.id}>
@@ -104,6 +108,22 @@ export default function Report({ items }: Props) {
 
             {/* コメント */}
             {/* TODO テキストエリア */}
+            <div className={styles.commentArea}>
+              <BaseTextarea
+                label="コメント(差し戻す場合は必須)"
+                value={comment}
+                onChange={(value) => setComment(value)}
+                placeholder="コメントを入力してください"
+              />
+              <div className={styles.buttonArea}>
+                <BaseButton onClick={() => {}} variant="secondary" width="100px">
+                  差し戻す
+                </BaseButton>
+                <BaseButton onClick={() => {}} variant="primary" width="100px">
+                  承認する
+                </BaseButton>
+              </div>
+            </div>
           </div>
         </MantineAccordion.Panel>
       </MantineAccordion.Item>

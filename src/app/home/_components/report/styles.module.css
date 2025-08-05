@@ -48,4 +48,16 @@
       border-left: 4px solid var(--warn-border);
     }
   }
+
+  .commentArea {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .buttonArea {
+      display: flex;
+      gap: 16px;
+      justify-content: flex-end;
+    }
+  }
 }

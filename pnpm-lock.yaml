@@ -16,6 +16,9 @@ importers:
       '@mantine/hooks':
         specifier: ^8.2.1
         version: 8.2.1(react@19.1.0)
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
@@ -1135,6 +1138,10 @@ packages:
     resolution:
       { integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w== }
     engines: { node: ^12.17.0 || ^14.13 || >=16.0.0 }
+
+  classnames@2.5.1:
+    resolution:
+      { integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow== }
 
   clear-module@4.1.2:
     resolution:
@@ -3517,6 +3524,8 @@ snapshots:
       supports-color: 7.2.0
 
   chalk@5.4.1: {}
+
+  classnames@2.5.1: {}
 
   clear-module@4.1.2:
     dependencies:
