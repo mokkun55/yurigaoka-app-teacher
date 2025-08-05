@@ -103,7 +103,7 @@ export default function Report({ items }: Props) {
             </div>
 
             {/* コメント */}
-            {/* テキストエリア */}
+            {/* TODO テキストエリア */}
           </div>
         </MantineAccordion.Panel>
       </MantineAccordion.Item>
