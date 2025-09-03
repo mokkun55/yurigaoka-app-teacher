@@ -8,6 +8,7 @@ type Props = {
   radius?: MantineRadius | string
   padding?: MantineSpacing | string
   withCloseButton?: boolean
+  center?: boolean
   size?: number | MantineSize | (string & {}) | string
 }
 
@@ -19,7 +20,8 @@ export default function BaseModal({
   size = 'lg',
   radius = '8px',
   padding = '24px',
-  withCloseButton = true,
+  withCloseButton = false,
+  center = true,
 }: Props) {
   return (
     <Modal
@@ -30,8 +32,9 @@ export default function BaseModal({
       withCloseButton={withCloseButton}
       title={title}
       size={size}
+      centered={center}
     >
-      {children}
+      <div>{children}</div>
     </Modal>
   )
 }
