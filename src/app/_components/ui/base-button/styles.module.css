@@ -28,7 +28,8 @@
   }
 
   &.disabled {
-    background-color: var(--gray);
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   &:focus {
