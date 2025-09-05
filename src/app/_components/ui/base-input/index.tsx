@@ -15,6 +15,7 @@ export const BaseInput = ({ label, value, onChange, placeholder }: Props) => {
       </MantineInput.Wrapper>
     )
   }
+  return <Input value={value} onChange={onChange} placeholder={placeholder} />
 }
 
 const Input = ({ value, onChange, placeholder }: Props) => {
