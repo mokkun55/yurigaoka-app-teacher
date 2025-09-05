@@ -7,9 +7,10 @@ type Props = {
   placeholder?: string
   data: string[]
   width?: string
+  clearable?: boolean
 }
 
-export const BaseSelect = ({ label, value, onChange, placeholder, data, width, ...props }: Props) => {
+export const BaseSelect = ({ label, value, onChange, placeholder, data, width, clearable = true, ...props }: Props) => {
   return (
     <Select
       label={label}
@@ -18,6 +19,8 @@ export const BaseSelect = ({ label, value, onChange, placeholder, data, width, .
       style={{ width }}
       value={value}
       onChange={(newValue) => onChange(newValue ?? '')}
+      clearable={clearable}
+      allowDeselect={false}
       {...props}
     />
   )
