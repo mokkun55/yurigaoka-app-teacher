@@ -2,6 +2,9 @@ import styles from './styles.module.css'
 import dayjs from '@/libs/dayjs'
 import { Copy, Trash } from 'lucide-react'
 import { toast } from 'react-hot-toast'
+import BaseModal from '../../../_components/ui/base-modal'
+import BaseButton from '../../../_components/ui/base-button'
+import { useDisclosure } from '@mantine/hooks'
 
 type Props = {
   code: string
@@ -10,6 +13,8 @@ type Props = {
 }
 
 export default function CodeCard({ code, usageCount, limitDate }: Props) {
+  const [modalOpened, { open: modalOpen, close: modalClose }] = useDisclosure(false)
+
   const handleCopy = () => {
     navigator.clipboard.writeText(code)
     toast.success('コードをコピーしました')
@@ -18,11 +23,12 @@ export default function CodeCard({ code, usageCount, limitDate }: Props) {
   const handleDelete = async () => {
     try {
       // 削除処理
+      modalClose()
     } catch (e) {
       console.error(e)
-      toast.error('コードを削除できませんでした')
+      toast.error('コード「' + code + '」を削除できませんでした')
     }
-    toast.success('コードを削除しました')
+    toast.success('コード「' + code + '」を削除しました')
   }
 
   return (
@@ -39,10 +45,26 @@ export default function CodeCard({ code, usageCount, limitDate }: Props) {
         <button className={styles.button} onClick={handleCopy}>
           <Copy size={24} color="var(--sub-text)" />
         </button>
-        <button className={styles.button} onClick={handleDelete}>
+        <button className={styles.button} onClick={modalOpen}>
           <Trash size={24} color="var(--red)" />
         </button>
       </div>
+
+      {/* モーダル */}
+      <BaseModal opened={modalOpened} onClose={modalClose}>
+        <div className={styles.modalContent}>
+          <h1 className={styles.modalTitle}>この招待コードを削除しますか?</h1>
+          <p className={styles.modalDescription}>この操作は取り消すことができません。</p>
+          <div className={styles.modalButtons}>
+            <BaseButton variant="danger" onClick={handleDelete} width="180px">
+              削除する
+            </BaseButton>
+            <BaseButton variant="secondary" onClick={modalClose} width="180px">
+              キャンセル
+            </BaseButton>
+          </div>
+        </div>
+      </BaseModal>
     </div>
   )
 }
