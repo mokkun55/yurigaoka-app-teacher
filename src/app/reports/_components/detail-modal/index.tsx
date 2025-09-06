@@ -4,6 +4,8 @@ import dayjs from '@/libs/dayjs'
 import { Calendar, FileText } from 'lucide-react'
 import Badge from '@/ui/badge'
 import HomecomingInfo from '@/ui/homecoming-info'
+import MealAbsenceInfo from '@/ui/meal-absence-info'
+
 type Props = {
   report: Report
 }
@@ -27,6 +29,16 @@ const homecomingInfoMock = {
     startMeal: [false, false],
     endMeal: [false, false],
   },
+}
+
+const mealAbsenceInfoMock = {
+  startDate: new Date('2025-01-01'),
+  endDate: new Date('2025-01-02'),
+  meals: {
+    startMeal: [false, false],
+    endMeal: [false, false],
+  },
+  reason: '家族の用事',
 }
 
 export default function DetailModal({ report }: Props) {
@@ -68,6 +80,7 @@ export default function DetailModal({ report }: Props) {
         {report.type === 'homecoming' && <HomecomingInfo {...homecomingInfoMock} />}
 
         {/* 欠食情報 */}
+        {report.type === 'meal' && <MealAbsenceInfo {...mealAbsenceInfoMock} />}
 
         {/* 差し戻し理由 */}
 
