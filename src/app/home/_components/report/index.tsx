@@ -1,11 +1,11 @@
 'use client'
 
-import Accordion from '@/app/_components/ui/accordion'
+import Accordion from '@/ui/accordion'
 import { Accordion as MantineAccordion } from '@mantine/core'
 import styles from './styles.module.css'
 import dayjs from '@/libs/dayjs'
-import BaseButton from '@/app/_components/ui/base-button'
-import BaseTextarea from '@/app/_components/ui/base-textarea'
+import BaseButton from '@/ui/base-button'
+import BaseTextarea from '@/ui/base-textarea'
 import { useState } from 'react'
 
 type Props = {

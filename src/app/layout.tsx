@@ -5,8 +5,8 @@ import dayjs from '@/libs/dayjs'
 import '@mantine/core/styles.css'
 import { MantineProvider } from '@mantine/core'
 import styles from './layout.module.css'
-import { SidebarItem } from './_components/ui/sidebar/item'
-import { PageHeader } from './_components/ui/header/page-header'
+import { SidebarItem } from '../ui/sidebar/item'
+import { PageHeader } from '../ui/header/page-header'
 dayjs.locale('ja')
 
 export const metadata: Metadata = {

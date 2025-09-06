@@ -2,9 +2,9 @@
 
 import { Report } from '../../_type/report'
 import { Table } from '@mantine/core'
-import Badge from '@/app/_components/ui/badge'
+import Badge from '@/ui/badge'
 import dayjs from '@/libs/dayjs'
-import BaseModal from '@/app/_components/ui/base-modal'
+import BaseModal from '@/ui/base-modal'
 import { useDisclosure } from '@mantine/hooks'
 import DetailModal from '../detail-modal'
 import { useState } from 'react'

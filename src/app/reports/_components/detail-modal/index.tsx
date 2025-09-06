@@ -2,7 +2,7 @@ import styles from './styles.module.css'
 import { Report } from '../../_type/report'
 import dayjs from '@/libs/dayjs'
 import { Calendar, FileText } from 'lucide-react'
-import Badge from '@/app/_components/ui/badge'
+import Badge from '@/ui/badge'
 type Props = {
   report: Report
 }

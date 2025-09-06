@@ -3,8 +3,8 @@
 import styles from './styles.module.css'
 import ReportTable from './_components/report-table'
 import { useState } from 'react'
-import { BaseSelect } from '@/app/_components/ui/base-select'
-import { BaseInput } from '@/app/_components/ui/base-input'
+import { BaseSelect } from '@/ui/base-select'
+import { BaseInput } from '@/ui/base-input'
 import { Report } from './_type/report'
 
 // TODO あとで動的に取得
