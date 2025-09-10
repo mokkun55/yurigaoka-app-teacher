@@ -4,8 +4,8 @@ import styles from './styles.module.css'
 import { Student } from './types/student'
 import StudentTable from './_components/student-table'
 import { useState } from 'react'
-import { BaseSelect } from '@/app/_components/ui/base-select'
-import { BaseInput } from '@/app/_components/ui/base-input'
+import { BaseSelect } from '@/ui/base-select'
+import { BaseInput } from '@/ui/base-input'
 
 // TODO あとで動的に取得
 const students: Student[] = [

@@ -2,7 +2,7 @@
 
 import { Student } from '../../types/student'
 import { Table } from '@mantine/core'
-import Badge from '@/app/_components/ui/badge'
+import Badge from '@/ui/badge'
 type Props = {
   students: Student[]
 }

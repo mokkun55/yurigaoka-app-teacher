@@ -2,8 +2,8 @@
 'use client'
 
 import { toast } from 'react-hot-toast'
-import BaseButton from '../_components/ui/base-button'
-import { BaseSelect } from '../_components/ui/base-select'
+import BaseButton from '../../ui/base-button'
+import { BaseSelect } from '../../ui/base-select'
 import styles from './styles.module.css'
 import { useState } from 'react'
 import CodeCard from './_components/code-card'
