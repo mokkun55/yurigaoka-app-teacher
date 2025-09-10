@@ -6,4 +6,5 @@ export type Report = {
   type: 'homecoming' | 'meal'
   createdAt: Date
   status: 'pending' | 'approved' | 'rejected' | 'canceled'
+  rejectReason?: string
 }

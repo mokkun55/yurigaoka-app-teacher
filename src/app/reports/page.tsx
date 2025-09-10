@@ -35,6 +35,7 @@ const reports: Report[] = [
     type: 'homecoming',
     createdAt: new Date('2024-01-13T09:15:00'),
     status: 'rejected',
+    rejectReason: '帰省理由が不適切です',
   },
   {
     id: 4,
@@ -89,6 +90,7 @@ const reports: Report[] = [
     type: 'homecoming',
     createdAt: new Date('2024-01-07T12:10:00'),
     status: 'rejected',
+    rejectReason: '帰省理由が不適切です',
   },
   {
     id: 10,
@@ -143,6 +145,7 @@ const reports: Report[] = [
     type: 'homecoming',
     createdAt: new Date('2024-01-01T11:40:00'),
     status: 'rejected',
+    rejectReason: '帰省理由が不適切です',
   },
   {
     id: 16,

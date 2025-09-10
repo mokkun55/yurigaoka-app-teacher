@@ -57,7 +57,7 @@ export default function ReportTable({ reports }: Props) {
       </Table>
 
       <BaseModal opened={modalOpened} onClose={modalClose}>
-        {selectedReport && <DetailModal report={selectedReport} />}
+        {selectedReport && <DetailModal report={selectedReport} onClose={modalClose} />}
       </BaseModal>
     </>
   )

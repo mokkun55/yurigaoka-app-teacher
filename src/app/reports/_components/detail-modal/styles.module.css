@@ -43,4 +43,31 @@
     justify-content: center;
     margin: 16px 0;
   }
+
+  .reject {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -8px;
+    margin-bottom: 16px;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
+}
+
+.approvedUI {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+
+  .buttonArea {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+  }
 }

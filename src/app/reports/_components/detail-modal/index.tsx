@@ -5,9 +5,13 @@ import { Calendar, FileText } from 'lucide-react'
 import Badge from '@/ui/badge'
 import HomecomingInfo from '@/ui/homecoming-info'
 import MealAbsenceInfo from '@/ui/meal-absence-info'
+import BaseButton from '@/ui/base-button'
+import BaseTextarea from '@/ui/base-textarea'
+import { useState } from 'react'
 
 type Props = {
   report: Report
+  onClose: () => void
 }
 
 const reportTypeMap = {
@@ -41,7 +45,7 @@ const mealAbsenceInfoMock = {
   reason: '家族の用事',
 }
 
-export default function DetailModal({ report }: Props) {
+export default function DetailModal({ report, onClose }: Props) {
   return (
     <div className={styles.container}>
       {/* ヘッダー */}
@@ -76,15 +80,61 @@ export default function DetailModal({ report }: Props) {
           <Badge variant={report.status} size="big" />
         </div>
 
+        {/* 差し戻し理由 */}
+        {report.status === 'rejected' && (
+          <div className={styles.reject}>
+            <p>却下理由: {report.rejectReason}</p>
+          </div>
+        )}
+
         {/* 帰省情報 */}
         {report.type === 'homecoming' && <HomecomingInfo {...homecomingInfoMock} />}
 
         {/* 欠食情報 */}
         {report.type === 'meal' && <MealAbsenceInfo {...mealAbsenceInfoMock} />}
 
-        {/* 差し戻し理由 */}
+        {/* 承認UI (申請中の場合) */}
+        {report.status === 'pending' && (
+          <>
+            <ApprovedUI />
+          </>
+        )}
 
-        <div className={styles.buttonContainer}>{/* ボタンたち */}</div>
+        <div className={styles.buttonContainer}>
+          <BaseButton onClick={onClose} variant="secondary">
+            閉じる
+          </BaseButton>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// 承認UI
+const ApprovedUI = () => {
+  const [comment, setComment] = useState('')
+  const handleReject = () => {
+    console.log('差し戻す')
+  }
+  const handleApprove = () => {
+    console.log('承認する')
+  }
+
+  return (
+    <div className={styles.approvedUI}>
+      <BaseTextarea
+        label="コメント(差し戻す場合は必須)"
+        value={comment}
+        onChange={(value) => setComment(value)}
+        placeholder="コメントを入力してください"
+      />
+      <div className={styles.buttonArea}>
+        <BaseButton onClick={handleReject} variant="secondary">
+          差し戻す
+        </BaseButton>
+        <BaseButton onClick={handleApprove} variant="primary">
+          承認する
+        </BaseButton>
       </div>
     </div>
   )
