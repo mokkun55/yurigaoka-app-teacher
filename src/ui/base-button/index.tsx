@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode
   onClick?: () => void
   className?: string
-  variant?: 'primary' | 'secondary' | 'danger' | 'green'
+  variant?: 'primary' | 'secondary' | 'danger' | 'green' | 'icon'
   idDisabled?: boolean
   width?: string
   height?: string
