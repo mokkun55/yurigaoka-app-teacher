@@ -33,7 +33,7 @@ const eslintConfig = [
       },
     },
     rules: {
-      'no-unused-vars': ['error', { args: 'all', argsIgnorePattern: '^_' }],
+      'no-unused-vars': ['error', { args: 'all', argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       // "import/no-unused-modules": ["error", { unusedExports: true }],
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
