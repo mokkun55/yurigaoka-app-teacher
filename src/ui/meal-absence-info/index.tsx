@@ -1,26 +1,7 @@
 import dayjs from '@/libs/dayjs'
 import styles from './styles.module.css'
 import { Utensils } from 'lucide-react'
-
-// 食事の欠食情報をテキストに変換する関数
-// meals配列: [朝食, 夕食] の順番で、trueが欠食、falseが食事あり
-function getMealText(meals: boolean[]): string {
-  if (!meals || meals.length < 2) return '欠食しない'
-
-  const [breakfast, dinner] = meals
-
-  if (!breakfast && !dinner) {
-    return '欠食しない'
-  } else if (breakfast && dinner) {
-    return '朝と夕'
-  } else if (breakfast && !dinner) {
-    return '朝のみ'
-  } else if (!breakfast && dinner) {
-    return '夕のみ'
-  }
-
-  return '欠食しない'
-}
+import { getMealText } from '@/utils/getMealText'
 
 type Props = {
   startDate: Date
