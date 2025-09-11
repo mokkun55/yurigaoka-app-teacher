@@ -2,9 +2,9 @@ import styles from './styles.module.css'
 import dayjs from '@/libs/dayjs'
 import { Copy, Trash } from 'lucide-react'
 import { toast } from 'react-hot-toast'
-import BaseModal from '../../../../ui/base-modal'
-import BaseButton from '../../../../ui/base-button'
 import { useDisclosure } from '@mantine/hooks'
+import BaseModal from '@/ui/base-modal'
+import BaseButton from '@/ui/base-button'
 
 type Props = {
   code: string
