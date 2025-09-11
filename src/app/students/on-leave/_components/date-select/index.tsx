@@ -10,10 +10,10 @@ type Props = {
 
 export default function DateSelect({ selectedDate, setSelectedDate }: Props) {
   const handlePreviousDate = () => {
-    setSelectedDate(new Date(selectedDate.setDate(selectedDate.getDate() - 1)))
+    setSelectedDate(dayjs(selectedDate).add(-1, 'day').toDate())
   }
   const handleNextDate = () => {
-    setSelectedDate(new Date(selectedDate.setDate(selectedDate.getDate() + 1)))
+    setSelectedDate(dayjs(selectedDate).add(1, 'day').toDate())
   }
 
   return (
