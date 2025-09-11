@@ -2,11 +2,11 @@
 'use client'
 
 import { toast } from 'react-hot-toast'
-import BaseButton from '../../ui/base-button'
-import { BaseSelect } from '../../ui/base-select'
 import styles from './styles.module.css'
 import { useState } from 'react'
 import CodeCard from './_components/code-card'
+import { BaseSelect } from '@/ui/base-select'
+import BaseButton from '@/ui/base-button'
 
 // TODO モックなので後で動的に取得
 // disable
@@ -46,7 +46,7 @@ export default function CodePage() {
             data={['1日', '3日', '7日']}
             width="100%"
             value={validityPeriod}
-            onChange={(value) => setValidityPeriod(value as '1日' | '3日' | '7日')}
+            onChange={(value: string) => setValidityPeriod(value as '1日' | '3日' | '7日')}
           />
           <BaseButton type="submit" idDisabled={!validityPeriod}>
             発行する
