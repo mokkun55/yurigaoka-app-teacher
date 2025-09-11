@@ -11,12 +11,15 @@
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "tsc": "tsc --noEmit",
-    "spellcheck": "cspell \"src/**/*.{ts,tsx,md,json}\""
+    "spellcheck": "cspell \"src/**/*.{ts,tsx,md,json}\"",
+    "generate-type": "supabase gen types typescript --project-id zlegzzyoyxusajiwckbs > src/utils/supabase/database.types.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
     "@mantine/core": "^8.2.1",
     "@mantine/hooks": "^8.2.1",
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.57.4",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
