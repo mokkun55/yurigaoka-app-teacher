@@ -16,8 +16,8 @@ export default function AccessDeniedPage() {
         <p className={styles.description}>あなたはこのページにアクセスする権限がありません。</p>
 
         <div className={styles.actions}>
-          <BaseButton onClick={signOut} width="200px">
-            ログインする
+          <BaseButton onClick={signOut} width="280px">
+            別のアカウントでログインする
           </BaseButton>
         </div>
       </div>
