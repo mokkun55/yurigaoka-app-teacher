@@ -268,6 +268,21 @@ export type Database = {
         }
         Relationships: []
       }
+      whitelist: {
+        Row: {
+          email: string
+          id: number
+        }
+        Insert: {
+          email: string
+          id?: number
+        }
+        Update: {
+          email?: string
+          id?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

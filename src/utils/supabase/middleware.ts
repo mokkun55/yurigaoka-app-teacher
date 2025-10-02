@@ -4,6 +4,9 @@ import { NextResponse, type NextRequest } from 'next/server'
 // 開発用ミドルウェア無効化モード
 const devMode = false
 
+// 未ログインでもアクセス可能なページ
+const publicPages = ['/login', '/access-denied']
+
 export async function updateSession(request: NextRequest) {
   if (devMode) {
     console.log('[middleware] 開発用ミドルウェア無効化モード')
@@ -43,6 +46,28 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  const canAccess = async () => {
+    if (!user) {
+      return false
+    }
+    if (!user.email) {
+      return false
+    }
+    const { data, error } = await supabase
+      .from('whitelist')
+      .select('*')
+      .eq('email', user.email.replace('@ktc.ac.jp', ''))
+      .maybeSingle()
+    if (error) {
+      console.error('[middleware] 教師権限チェックエラー:', error)
+      return false
+    }
+    const hasAccess = data !== null
+    console.log('[middleware] 教師権限チェック結果:', hasAccess)
+
+    return hasAccess
+  }
+
   // 認証コールバック処理中は認証チェックをスキップ
   if (request.nextUrl.pathname.startsWith('/api/auth/callback')) {
     console.log('[middleware] 認証コールバック処理中、認証チェックをスキップ')
@@ -50,16 +75,29 @@ export async function updateSession(request: NextRequest) {
   }
 
   // 認証していないユーザー向け
-  if (!user && !request.nextUrl.pathname.startsWith('/login')) {
-    console.log('[middleware] 未認証のため /login へリダイレクト')
+  if (!user && !publicPages.includes(request.nextUrl.pathname)) {
+    console.log('[middleware] 未認証のため /access-denied へリダイレクト')
     const url = request.nextUrl.clone()
-    url.pathname = '/login'
+    url.pathname = '/access-denied'
     return NextResponse.redirect(url)
   }
 
-  // 認証しているユーザー向け
-  if (user && request.nextUrl.pathname.startsWith('/login')) {
-    console.log('[middleware] 認証済みユーザーが /login にアクセスしたため /home へリダイレクト')
+  // 教師権限チェック（認証済みユーザーのみ）
+  if (user && !(await canAccess())) {
+    // 既に /access-denied にいる場合はリダイレクトしない
+    if (request.nextUrl.pathname === '/access-denied') {
+      console.log('[middleware] 教師権限なしユーザーが /access-denied にいるため、そのまま通す')
+      return supabaseResponse
+    }
+    console.log('[middleware] 教師権限がないため /access-denied へリダイレクト')
+    const url = request.nextUrl.clone()
+    url.pathname = '/access-denied'
+    return NextResponse.redirect(url)
+  }
+
+  // 認証しているユーザー向け（教師権限がある場合のみ）
+  if (user && publicPages.includes(request.nextUrl.pathname)) {
+    console.log('[middleware] 認証済みユーザーが公開ページにアクセスしたため /home へリダイレクト')
     const url = request.nextUrl.clone()
     url.pathname = '/home'
     return NextResponse.redirect(url)
