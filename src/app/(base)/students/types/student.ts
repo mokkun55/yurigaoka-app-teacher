@@ -7,5 +7,4 @@ export type Student = {
   room_number: number | null
   parent_name: string | null
   phone_number: number | null
-  status: 'stay' | 'leave'
 }
