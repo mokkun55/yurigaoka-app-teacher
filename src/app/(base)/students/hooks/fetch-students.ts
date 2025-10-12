@@ -4,18 +4,6 @@ import { createClient } from '@/utils/supabase/client'
 export const fetchStudents = async () => {
   const supabase = createClient()
 
-  // 現在のユーザー情報を確認（デバッグ用）
-  await supabase.auth.getUser()
-
-  // まず、usersテーブルから全件取得を試す（RLS確認用）
-  const { data: allUsers, error: allUsersError } = await supabase
-    .from('users')
-    .select('id, name, role, is_deleted')
-    .eq('role', 'student')
-
-  console.log('All users with role=student:', allUsers?.length, allUsers)
-  if (allUsersError) console.error('allUsersError:', allUsersError)
-
   // usersテーブルとstudentsテーブルを結合して取得
   const { data, error } = await supabase
     .from('users')
@@ -29,7 +17,10 @@ export const fetchStudents = async () => {
         club_id,
         room_number,
         parent_name,
-        phone_number
+        phone_number,
+        grades(name),
+        classes(name),
+        clubs(name)
       )
     `,
       { count: 'exact' }
@@ -42,5 +33,20 @@ export const fetchStudents = async () => {
     return { data: null, error }
   }
 
-  return { data, error: null }
+  // studentsオブジェクトをフラット化
+  const flattenedData = data?.map((user) => {
+    const studentData = Array.isArray(user.students) ? user.students[0] : user.students
+    return {
+      id: user.id,
+      name: user.name,
+      grade: studentData?.grades?.name ?? null,
+      class: studentData?.classes?.name ?? null,
+      club: studentData?.clubs?.name ?? null,
+      room_number: studentData?.room_number,
+      parent_name: studentData?.parent_name,
+      phone_number: studentData?.phone_number,
+    }
+  })
+
+  return { data: flattenedData, error: null }
 }
