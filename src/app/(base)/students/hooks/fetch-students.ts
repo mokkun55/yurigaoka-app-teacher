@@ -38,13 +38,13 @@ export const fetchStudents = async () => {
     const studentData = Array.isArray(user.students) ? user.students[0] : user.students
     return {
       id: user.id,
-      name: user.name,
+      name: user.name ?? '',
       grade: studentData?.grades?.name ?? null,
       class: studentData?.classes?.name ?? null,
       club: studentData?.clubs?.name ?? null,
-      room_number: studentData?.room_number,
-      parent_name: studentData?.parent_name,
-      phone_number: studentData?.phone_number,
+      room_number: studentData?.room_number ?? null,
+      parent_name: studentData?.parent_name ?? null,
+      phone_number: studentData?.phone_number ?? null,
     }
   })
 

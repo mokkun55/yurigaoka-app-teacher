@@ -3,247 +3,45 @@
 import styles from './styles.module.css'
 import { Student } from './types/student'
 import StudentTable from './_components/student-table'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BaseSelect } from '@/ui/base-select'
 import { BaseInput } from '@/ui/base-input'
-
-// TODO あとで動的に取得
-const students: Student[] = [
-  {
-    id: 1,
-    grade: 1,
-    class: 1,
-    name: '田中太郎',
-    club: 'サッカー部',
-    roomNumber: 2001,
-    status: 'stay',
-  },
-  {
-    id: 2,
-    grade: 2,
-    class: 2,
-    name: '佐藤花子',
-    roomNumber: 2002,
-    status: 'leave',
-  },
-  {
-    id: 3,
-    grade: 3,
-    class: 3,
-    name: '山田次郎',
-    club: 'サッカー部',
-    roomNumber: 2003,
-    status: 'stay',
-  },
-  {
-    id: 4,
-    grade: 4,
-    class: 4,
-    name: '鈴木美咲',
-    club: 'ソフトテニス部',
-    roomNumber: 2004,
-    status: 'leave',
-  },
-  {
-    id: 5,
-    grade: 5,
-    class: 5,
-    name: '高橋健太',
-    roomNumber: 2005,
-    status: 'stay',
-  },
-  {
-    id: 6,
-    grade: 6,
-    class: 6,
-    name: '伊藤愛',
-    club: 'ソフトテニス部',
-    roomNumber: 2006,
-    status: 'leave',
-  },
-  {
-    id: 7,
-    grade: 1,
-    class: 2,
-    name: '渡辺翔太',
-    club: 'バスケットボール部',
-    roomNumber: 2007,
-    status: 'stay',
-  },
-  {
-    id: 8,
-    grade: 2,
-    class: 3,
-    name: '中村優香',
-    club: '吹奏楽部',
-    roomNumber: 2008,
-    status: 'leave',
-  },
-  {
-    id: 9,
-    grade: 3,
-    class: 1,
-    name: '小林大輔',
-    roomNumber: 2009,
-    status: 'stay',
-  },
-  {
-    id: 10,
-    grade: 4,
-    class: 2,
-    name: '加藤美穂',
-    club: '美術部',
-    roomNumber: 2010,
-    status: 'leave',
-  },
-  {
-    id: 11,
-    grade: 5,
-    class: 3,
-    name: '吉田拓也',
-    club: '野球部',
-    roomNumber: 2011,
-    status: 'stay',
-  },
-  {
-    id: 12,
-    grade: 6,
-    class: 1,
-    name: '松本さくら',
-    club: '茶道部',
-    roomNumber: 2012,
-    status: 'leave',
-  },
-  {
-    id: 13,
-    grade: 1,
-    class: 3,
-    name: '森田健一',
-    club: '陸上部',
-    roomNumber: 2013,
-    status: 'stay',
-  },
-  {
-    id: 14,
-    grade: 2,
-    class: 1,
-    name: '石川麻衣',
-    club: 'バレーボール部',
-    roomNumber: 2014,
-    status: 'leave',
-  },
-  {
-    id: 15,
-    grade: 3,
-    class: 2,
-    name: '清水直樹',
-    roomNumber: 2015,
-    status: 'stay',
-  },
-  {
-    id: 16,
-    grade: 4,
-    class: 3,
-    name: '木村由美',
-    club: '書道部',
-    roomNumber: 2016,
-    status: 'leave',
-  },
-  {
-    id: 17,
-    grade: 5,
-    class: 1,
-    name: '青木慎一',
-    club: '卓球部',
-    roomNumber: 2017,
-    status: 'stay',
-  },
-  {
-    id: 18,
-    grade: 6,
-    class: 2,
-    name: '福田あいり',
-    club: '合唱部',
-    roomNumber: 2018,
-    status: 'leave',
-  },
-  {
-    id: 19,
-    grade: 1,
-    class: 1,
-    name: '岡田雄太',
-    club: '柔道部',
-    roomNumber: 2019,
-    status: 'stay',
-  },
-  {
-    id: 20,
-    grade: 2,
-    class: 2,
-    name: '西村理恵',
-    club: '演劇部',
-    roomNumber: 2020,
-    status: 'leave',
-  },
-  {
-    id: 21,
-    grade: 3,
-    class: 3,
-    name: '原田和也',
-    roomNumber: 2021,
-    status: 'stay',
-  },
-  {
-    id: 22,
-    grade: 4,
-    class: 1,
-    name: '村上智子',
-    club: '料理部',
-    roomNumber: 2022,
-    status: 'leave',
-  },
-  {
-    id: 23,
-    grade: 5,
-    class: 2,
-    name: '藤田俊介',
-    club: '剣道部',
-    roomNumber: 2023,
-    status: 'stay',
-  },
-  {
-    id: 24,
-    grade: 6,
-    class: 3,
-    name: '三浦彩香',
-    club: '華道部',
-    roomNumber: 2024,
-    status: 'leave',
-  },
-  {
-    id: 25,
-    grade: 1,
-    class: 2,
-    name: '野口翔平',
-    club: '水泳部',
-    roomNumber: 2025,
-    status: 'stay',
-  },
-  {
-    id: 26,
-    grade: 2,
-    class: 3,
-    name: '田村美咲',
-    club: 'ダンス部',
-    roomNumber: 2026,
-    status: 'leave',
-  },
-]
+import { fetchStudents } from './hooks/fetch-students'
 
 export default function StudentsPage() {
+  const [students, setStudents] = useState<Student[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const [searchValue, setSearchValue] = useState<string | null>(null)
-  const [gradeFilter, setGradeFilter] = useState<number | null>(null)
+  const [gradeFilter, setGradeFilter] = useState<string | null>(null)
   const [clubFilter, setClubFilter] = useState<string | null>(null)
+
+  // 学生データを取得
+  useEffect(() => {
+    const loadStudents = async () => {
+      setIsLoading(true)
+      const { data, error } = await fetchStudents()
+      if (error) {
+        console.error('Failed to fetch students:', error)
+        setIsLoading(false)
+        return
+      }
+      if (data) {
+        // clubがnullの場合は"未所属/その他"と表示
+        // nameがnullまたは空の学生は除外
+        const studentsWithStatus = data
+          .filter((student) => student.name && student.name.trim() !== '')
+          .map((student) => ({
+            ...student,
+            name: student.name as string, // フィルター後はnullではない
+            club: student.club ?? '未所属/その他',
+            status: 'stay' as const, // statusは固定
+          }))
+        setStudents(studentsWithStatus)
+      }
+      setIsLoading(false)
+    }
+    loadStudents()
+  }, [])
 
   // フィルター
   const filteredStudents = students.filter((student) => {
@@ -251,6 +49,14 @@ export default function StudentsPage() {
     if (clubFilter && student.club !== clubFilter) return false
     return student.name.includes(searchValue?.toLowerCase() ?? '')
   })
+
+  // 動的に学年と部活動のリストを生成
+  const gradeOptions = Array.from(new Set(students.map((s) => s.grade).filter(Boolean))) as string[]
+  const clubOptions = Array.from(new Set(students.map((s) => s.club).filter(Boolean))) as string[]
+
+  if (isLoading) {
+    return <div className={styles.container}>読み込み中...</div>
+  }
 
   return (
     <div className={styles.container}>
@@ -264,17 +70,16 @@ export default function StudentsPage() {
         <BaseSelect
           label="学年"
           placeholder="学年を選択"
-          value={gradeFilter ? `${gradeFilter}年` : ''}
-          onChange={(value) => setGradeFilter(value ? Number(value.slice(0, 1)) : null)}
-          data={['1年', '2年', '3年', '4年', '5年']}
+          value={gradeFilter ?? ''}
+          onChange={(value) => setGradeFilter(value || null)}
+          data={gradeOptions}
         />
-        {/* TODO 未所属も絞り込みたい */}
         <BaseSelect
           label="部活動"
           placeholder="部活動を選択"
           value={clubFilter ?? ''}
-          onChange={(value) => setClubFilter(value)}
-          data={['サッカー部', 'ソフトテニス部']}
+          onChange={(value) => setClubFilter(value || null)}
+          data={clubOptions}
         />
       </div>
       <div className={styles.studentList}>

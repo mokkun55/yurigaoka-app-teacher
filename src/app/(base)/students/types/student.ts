@@ -1,9 +1,11 @@
 export type Student = {
-  id: number
-  grade: number
-  class: number
+  id: string
   name: string
-  club?: string
-  roomNumber: number
+  grade: string | null
+  class: string | null
+  club: string | null
+  room_number: number | null
+  parent_name: string | null
+  phone_number: number | null
   status: 'stay' | 'leave'
 }

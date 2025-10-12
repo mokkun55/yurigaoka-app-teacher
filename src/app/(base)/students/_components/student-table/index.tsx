@@ -2,22 +2,21 @@
 
 import { Student } from '../../types/student'
 import { Table } from '@mantine/core'
-import Badge from '@/ui/badge'
+
 type Props = {
   students: Student[]
 }
 
 export default function StudentTable({ students }: Props) {
   const rows = students.map((student) => {
+    const isUnaffiliated = student.club === '未所属/その他'
+
     return (
       <Table.Tr key={student.id}>
-        <Table.Td>
-          {student.grade}年{student.class}組
-        </Table.Td>
+        <Table.Td>{student.grade && student.class ? `${student.grade}年${student.class}組` : '-'}</Table.Td>
         <Table.Td>{student.name}</Table.Td>
-        <Table.Td>{student.club || '-'}</Table.Td>
-        <Table.Td>{student.roomNumber}号室</Table.Td>
-        <Table.Td>{<Badge variant={student.status} />}</Table.Td>
+        <Table.Td style={{ color: isUnaffiliated ? '#999' : 'inherit' }}>{student.club || '-'}</Table.Td>
+        <Table.Td>{student.room_number ? `${student.room_number}号室` : '-'}</Table.Td>
       </Table.Tr>
     )
   })
@@ -30,7 +29,6 @@ export default function StudentTable({ students }: Props) {
           <Table.Th>名前</Table.Th>
           <Table.Th>部活動</Table.Th>
           <Table.Th>部屋番号</Table.Th>
-          <Table.Th>在寮/帰省</Table.Th>
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>{rows}</Table.Tbody>
