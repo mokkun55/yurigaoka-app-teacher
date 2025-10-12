@@ -51,8 +51,18 @@ export default function StudentsPage() {
   })
 
   // 動的に学年と部活動のリストを生成
-  const gradeOptions = Array.from(new Set(students.map((s) => s.grade).filter(Boolean))) as string[]
-  const clubOptions = Array.from(new Set(students.map((s) => s.club).filter(Boolean))) as string[]
+  const gradeOptions = Array.from(new Set(students.map((s) => s.grade).filter(Boolean))).sort((a, b) => {
+    // 学年文字列から数字を抽出して比較
+    const numA = parseInt(a?.match(/\d+/)?.[0] || '0')
+    const numB = parseInt(b?.match(/\d+/)?.[0] || '0')
+    return numA - numB
+  }) as string[]
+  const clubOptions = Array.from(new Set(students.map((s) => s.club).filter(Boolean))).sort((a, b) => {
+    // 「未所属/その他」を最後にする
+    if (a === '未所属/その他') return 1
+    if (b === '未所属/その他') return -1
+    return (a ?? '').localeCompare(b ?? '')
+  }) as string[]
 
   if (isLoading) {
     return <div className={styles.container}>読み込み中...</div>
