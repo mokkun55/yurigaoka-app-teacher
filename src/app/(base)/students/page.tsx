@@ -44,11 +44,25 @@ export default function StudentsPage() {
   }, [])
 
   // フィルター
-  const filteredStudents = students.filter((student) => {
-    if (gradeFilter && student.grade !== gradeFilter) return false
-    if (clubFilter && student.club !== clubFilter) return false
-    return student.name.includes(searchValue?.toLowerCase() ?? '')
-  })
+  const filteredStudents = students
+    .filter((student) => {
+      if (gradeFilter && student.grade !== gradeFilter) return false
+      if (clubFilter && student.club !== clubFilter) return false
+      return student.name.includes(searchValue?.toLowerCase() ?? '')
+    })
+    .sort((a, b) => {
+      // 学年順にソート
+      const gradeA = parseInt(a.grade?.match(/\d+/)?.[0] || '0')
+      const gradeB = parseInt(b.grade?.match(/\d+/)?.[0] || '0')
+      if (gradeA !== gradeB) {
+        return gradeA - gradeB
+      }
+
+      // 学年が同じ場合はクラス順（アルファベット順）にソート
+      const classA = a.class ?? ''
+      const classB = b.class ?? ''
+      return classA.localeCompare(classB)
+    })
 
   // 動的に学年と部活動のリストを生成
   const gradeOptions = Array.from(new Set(students.map((s) => s.grade).filter(Boolean))).sort((a, b) => {
